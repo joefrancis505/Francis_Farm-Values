@@ -1,0 +1,99 @@
+You've raised an excellent point. We should indeed prevent the code from attempting to rasterize variables that don't exist for earlier years. Let's modify the `rasterize_data` function to account for this.
+
+
+
+```r
+rasterize_data <- function(sf_object, resolution = 1000, year) {  # 1km resolution
+  library(terra)
+  
+  bbox <- st_bbox(sf_object)
+  raster_template <- rast(xmin=bbox["xmin"], xmax=bbox["xmax"], 
+                          ymin=bbox["ymin"], ymax=bbox["ymax"], 
+                          resolution=resolution, crs=st_crs(sf_object))
+  
+  # Define variables based on the year
+  variables <- c("census_pop_density", "urban_census_pop_density", "enslaved_density")
+  
+  if (year >= 1850) {
+    variables <- c(variables, "farmv_total_density", "improved_density", "unimproved_density")
+  }
+  
+  rasterize_variable <- function(variable) {
+    if (variable %in% names(sf_object)) {
+      cat(sprintf("Rasterizing %s...\n", variable))
+      # Ensure the variable is numeric
+      sf_object[[variable]] <- as.numeric(sf_object[[variable]])
+      # Use 'sum' instead of 'mean', we'll calculate mean later
+      r <- terra::rasterize(vect(sf_object), raster_template, field = variable, fun = "sum")
+      # Count the number of polygons contributing to each cell
+      count <- terra::rasterize(vect(sf_object), raster_template, field = 1, fun = "count")
+      # Calculate mean by dividing sum by count
+      r_mean <- r / count
+      return(r_mean)
+    } else {
+      cat(sprintf("Skipping %s (not available for year %d)...\n", variable, year))
+      return(NULL)
+    }
+  }
+  
+  raster_list <- lapply(variables, rasterize_variable)
+  raster_list <- raster_list[!sapply(raster_list, is.null)]  # Remove NULL elements
+  
+  # Convert the list of rasters to a SpatRaster object
+  if (length(raster_list) > 0) {
+    raster_stack <- do.call(c, raster_list)
+    names(raster_stack) <- variables[sapply(raster_list, function(x) !is.null(x))]
+  } else {
+    stop("No variables were successfully rasterized.")
+  }
+  
+  return(raster_stack)
+}
+
+```
+
+Now, let's update the `process_year` function to pass the year to `rasterize_data`:
+
+
+
+```r
+process_year <- function(year, census_data, zones_1900) {
+  cat(sprintf("\nProcessing year: %s\n", year))
+  
+  # ... (previous code remains the same)
+  
+  cat("Calculating densities...\n")
+  counties_densities <- calculate_densities(counties_filtered)
+  
+  cat("Rasterizing data...\n")
+  raster_data <- rasterize_data(counties_densities, year = as.numeric(year))
+  
+  cat("Performing zonal statistics...\n")
+  zonal_results <- zonal_stats(raster_data, zones_1900)
+  
+  cat("Converting to absolute values...\n")
+  final_results <- convert_to_absolute(zonal_results, zones_1900, year = as.numeric(year))
+  
+  # ... (rest of the function remains the same)
+}
+
+```
+
+These changes ensure that:
+
+1. The `rasterize_data` function only attempts to rasterize variables that are available for the given year.
+2. It skips variables that are not present in the input data, printing a message to inform you which variables are being skipped.
+3. The function adapts to the available variables, creating a raster stack only for the variables that were successfully rasterized.
+
+This approach should prevent errors when processing earlier years where farm-related variables are not available. The code will now handle different sets of variables gracefully across all years.
+
+To further improve debugging, you could add a print statement in the `process_year` function just after rasterizing:
+
+```r
+cat("Debug: Names of rasterized layers:\n")
+print(names(raster_data))
+```
+
+This will show you which variables were actually rasterized for each year.
+
+Try running the code with these changes. If you encounter any issues or if the output doesn't look as expected, please let me know, and we can further refine the solution.
