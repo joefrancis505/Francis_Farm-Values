@@ -232,7 +232,7 @@ run_analysis <- function(group) {
        mean_data$mean_Yit[mean_data$slavery == 0],
        type = "n",
        xlab = " ",
-       ylab = "Log relative farm values per acre (normalized)",
+       ylab = "Log relative farm values per acre",
        xlim = c(year_range[1] - year_padding, year_range[2] + year_padding),
        ylim = c(2, 6),
        xaxs = "i",
