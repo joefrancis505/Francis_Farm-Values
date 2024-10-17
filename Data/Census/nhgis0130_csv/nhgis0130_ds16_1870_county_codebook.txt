@@ -1,99 +1,122 @@
-You've raised an excellent point. We should indeed prevent the code from attempting to rasterize variables that don't exist for earlier years. Let's modify the `rasterize_data` function to account for this.
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0130_ds16_1870_county'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             1870
+Geographic level: County (by State)
+Dataset:          1870 Census: Agriculture Data [US, States & Counties]
+   NHGIS code:    1870_cAg
+   NHGIS ID:      ds16
+ 
+Tables:
+ 
+1. Total Population
+   Universe:    Persons
+   Source code: NT1
+   NHGIS code:  AJR
+ 
+2. Improved/Unimproved Land in Farms
+   Universe:    Farms
+   Source code: NT2
+   NHGIS code:  AJU
+ 
+3. Value of Farms, Implements and Machinery
+   Universe:    Farms
+   Source code: NT3
+   NHGIS code:  AJV
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+    GISJOIN:     GIS Join Match Code
+    YEAR:        Data File Year
+    STATE:       State Name
+    STATEA:      State Code
+    COUNTY:      County Name
+    COUNTYA:     County Code
+    AREANAME:    Area name
+    STATEICP:    ICPSR State Code
+    COUNTYICP:   ICPSR County Code
+ 
+Table 1:     Total Population
+Universe:    Persons
+Source code: NT1
+NHGIS code:  AJR
+    AJR001:      Total
+ 
+Table 2:     Improved/Unimproved Land in Farms
+Universe:    Farms
+Source code: NT2
+NHGIS code:  AJU
+    AJU001:      Improved
+    AJU002:      Unimproved: Unimproved woodland
+    AJU003:      Unimproved: Other unimproved
+ 
+Table 3:     Value of Farms, Implements and Machinery
+Universe:    Farms
+Source code: NT3
+NHGIS code:  AJV
+    AJV001:      Farms
+    AJV002:      Implements and machinery
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
 
+* REDISTRIBUTION: You will not redistribute the data without permission.
 
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
 
-```r
-rasterize_data <- function(sf_object, resolution = 1000, year) {  # 1km resolution
-  library(terra)
-  
-  bbox <- st_bbox(sf_object)
-  raster_template <- rast(xmin=bbox["xmin"], xmax=bbox["xmax"], 
-                          ymin=bbox["ymin"], ymax=bbox["ymax"], 
-                          resolution=resolution, crs=st_crs(sf_object))
-  
-  # Define variables based on the year
-  variables <- c("census_pop_density", "urban_census_pop_density", "enslaved_density")
-  
-  if (year >= 1850) {
-    variables <- c(variables, "farmv_total_density", "improved_density", "unimproved_density")
-  }
-  
-  rasterize_variable <- function(variable) {
-    if (variable %in% names(sf_object)) {
-      cat(sprintf("Rasterizing %s...\n", variable))
-      # Ensure the variable is numeric
-      sf_object[[variable]] <- as.numeric(sf_object[[variable]])
-      # Use 'sum' instead of 'mean', we'll calculate mean later
-      r <- terra::rasterize(vect(sf_object), raster_template, field = variable, fun = "sum")
-      # Count the number of polygons contributing to each cell
-      count <- terra::rasterize(vect(sf_object), raster_template, field = 1, fun = "count")
-      # Calculate mean by dividing sum by count
-      r_mean <- r / count
-      return(r_mean)
-    } else {
-      cat(sprintf("Skipping %s (not available for year %d)...\n", variable, year))
-      return(NULL)
-    }
-  }
-  
-  raster_list <- lapply(variables, rasterize_variable)
-  raster_list <- raster_list[!sapply(raster_list, is.null)]  # Remove NULL elements
-  
-  # Convert the list of rasters to a SpatRaster object
-  if (length(raster_list) > 0) {
-    raster_stack <- do.call(c, raster_list)
-    names(raster_stack) <- variables[sapply(raster_list, function(x) !is.null(x))]
-  } else {
-    stop("No variables were successfully rasterized.")
-  }
-  
-  return(raster_stack)
-}
+* CITATION: You will cite NHGIS appropriately.
 
-```
+    * Publications and research reports employing NHGIS data (either tabular or GIS) 
+      should include the following citation:
 
-Now, let's update the `process_year` function to pass the year to `rasterize_data`:
+        Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles.
+        IPUMS National Historical Geographic Information System: Version 18.0 
+        [dataset]. Minneapolis, MN: IPUMS. 2023.
+        http://doi.org/10.18128/D050.V18.0
 
+    * For policy briefs, online resources, or articles in the popular press, we 
+      recommend that you cite the use of NHGIS data as follows:
 
+        IPUMS NHGIS, University of Minnesota, www.nhgis.org.
 
-```r
-process_year <- function(year, census_data, zones_1900) {
-  cat(sprintf("\nProcessing year: %s\n", year))
-  
-  # ... (previous code remains the same)
-  
-  cat("Calculating densities...\n")
-  counties_densities <- calculate_densities(counties_filtered)
-  
-  cat("Rasterizing data...\n")
-  raster_data <- rasterize_data(counties_densities, year = as.numeric(year))
-  
-  cat("Performing zonal statistics...\n")
-  zonal_results <- zonal_stats(raster_data, zones_1900)
-  
-  cat("Converting to absolute values...\n")
-  final_results <- convert_to_absolute(zonal_results, zones_1900, year = as.numeric(year))
-  
-  # ... (rest of the function remains the same)
-}
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
 
-```
+Send electronic material to: nhgis@umn.edu
 
-These changes ensure that:
+Printed matter should be sent to:
 
-1. The `rasterize_data` function only attempts to rasterize variables that are available for the given year.
-2. It skips variables that are not present in the input data, printing a message to inform you which variables are being skipped.
-3. The function adapts to the available variables, creating a raster stack only for the variables that were successfully rasterized.
-
-This approach should prevent errors when processing earlier years where farm-related variables are not available. The code will now handle different sets of variables gracefully across all years.
-
-To further improve debugging, you could add a print statement in the `process_year` function just after rasterizing:
-
-```r
-cat("Debug: Names of rasterized layers:\n")
-print(names(raster_data))
-```
-
-This will show you which variables were actually rasterized for each year.
-
-Try running the code with these changes. If you encounter any issues or if the output doesn't look as expected, please let me know, and we can further refine the solution.
+    IPUMS NHGIS
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
