@@ -92,12 +92,10 @@ create_combined_plot <- function(combined_data) {
     # Plot Upper South
     upper_south <- combined_data %>% filter(region == "Upper South")
     lines(upper_south$year, upper_south$mean_percent, col = "black", lwd = 2)
-    points(upper_south$year, upper_south$mean_percent, pch = 21, bg = "black", col = "white", cex = 1.5, lwd = 5)
     
     # Plot Deep South
     deep_south <- combined_data %>% filter(region == "Deep South")
     lines(deep_south$year, deep_south$mean_percent, col = "black", lwd = 1)
-    points(deep_south$year, deep_south$mean_percent, pch = 21, bg = "black", col = "white", cex = 1.5, lwd = 5)
     
     box(lwd = 0.8)
     
