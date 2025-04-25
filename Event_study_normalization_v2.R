@@ -275,7 +275,7 @@ process_raw_data <- function() {
             cotton = AOH011 * 400,
             corn = AOH007
           )
-      }
+      } 
       else if (year_str == "1890") {
         counties_df <- counties_sf %>%
           st_drop_geometry() %>%
