@@ -272,7 +272,7 @@ process_raw_data <- function() {
             land = improved + unimproved,
             farmv = ifelse(land > 0, farmv_total / land, NA_real_),
             pc_enslaved = 0,
-            cotton = AOH011,
+            cotton = AOH011 * 400,
             corn = AOH007
           )
       }
