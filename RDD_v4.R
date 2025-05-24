@@ -306,7 +306,7 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
   
   specifications <- list(
     list(include_slope = FALSE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = FALSE, include_pc_black = FALSE, suffix = ""),
-    list(include_slope = TRUE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = FALSE, include_pc_black = FALSE, suffix = "_with_slope"),
+    list(include_slope = TRUE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_slope"),
     list(include_slope = TRUE, exclude_border = TRUE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_slope_no_border")
   )
   
