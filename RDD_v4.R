@@ -100,7 +100,7 @@ find_county_shapefile <- function(year, ipums_dir = NULL) {
 }
 
 # Function for 50-point analysis
-perform_rdd_50points <- function(data, point, include_slope = FALSE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = FALSE, include_pc_black = FALSE, year) {
+perform_rdd_50points <- function(data, point, include_geology = FALSE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = FALSE, include_pc_black = FALSE, year) {
   result_df <- data.frame(point_id = point$point_id,
                           coef = NA, se = NA, p_value = NA,
                           n_treat = NA, n_control = NA,
@@ -124,7 +124,7 @@ perform_rdd_50points <- function(data, point, include_slope = FALSE, exclude_bor
     }
     
     covs <- NULL
-    if (include_slope) {
+    if (include_geology) {
       covs <- cbind(slope = data$slope, elevation = data$elevation)
     }
     if (include_ph) {
@@ -162,7 +162,7 @@ perform_rdd_50points <- function(data, point, include_slope = FALSE, exclude_bor
 }
 
 # Function for robustness checks
-perform_rdd_robustness <- function(data, include_slope = FALSE, exclude_border = FALSE, include_enslaved = FALSE,
+perform_rdd_robustness <- function(data, include_geology = FALSE, exclude_border = FALSE, include_enslaved = FALSE,
                                    include_ph = FALSE, include_pc_black = FALSE, bw_method = "mserd", kernel = "triangular", 
                                    exclude_ohio_virginia = FALSE, year) {
   result_df <- data.frame(coef = NA, se = NA, p_value = NA,
@@ -171,7 +171,7 @@ perform_rdd_robustness <- function(data, include_slope = FALSE, exclude_border =
   
   tryCatch({
     if (exclude_border) {
-      data <- data %>% filter(!(border_county == 1 & treatment == 1))
+      data <- data %>% filter(!(border_county == 1))
     }
     
     if (exclude_ohio_virginia) {
@@ -190,7 +190,7 @@ perform_rdd_robustness <- function(data, include_slope = FALSE, exclude_border =
     }
     
     covs <- NULL
-    if (include_slope) {
+    if (include_geology) {
       covs <- cbind(slope = data$slope, elevation = data$elevation)
     }
     if (include_ph) {
@@ -305,22 +305,22 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
   data_year_sf$ohio_virginia_dist <- calculate_ohio_virginia_distance(data_year_sf, ohio_virginia_border)
   
   specifications <- list(
-    list(include_slope = FALSE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = FALSE, include_pc_black = FALSE, suffix = ""),
-    list(include_slope = TRUE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_slope"),
-    list(include_slope = TRUE, exclude_border = TRUE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_slope_no_border")
+    list(include_geology = FALSE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = FALSE, include_pc_black = FALSE, suffix = ""),
+    list(include_geology = TRUE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_geography"),
+    list(include_geology = TRUE, exclude_border = TRUE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_geography_no_border")
   )
   
   # Add enslaved specification only for years before 1870
   if (year < 1870) {
     specifications <- c(specifications, 
-                        list(list(include_slope = TRUE, exclude_border = TRUE, include_enslaved = TRUE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_enslaved_no_border"))
+                        list(list(include_geology = TRUE, exclude_border = FALSE, include_enslaved = TRUE, include_ph = TRUE, include_pc_black = FALSE, suffix = "_with_geography_enslaved"))
     )
   }
   
   # Add black specification only for years 1870 and after
   if (year >= 1870) {
     specifications <- c(specifications, 
-                        list(list(include_slope = TRUE, exclude_border = TRUE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = TRUE, suffix = "_black_no_border"))
+                        list(list(include_geology = TRUE, exclude_border = FALSE, include_enslaved = FALSE, include_ph = TRUE, include_pc_black = TRUE, suffix = "with_geography_black"))
     )
   }
   
@@ -333,7 +333,7 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
     
     results <- map_dfr(1:nrow(border_points), function(i) {
       result <- perform_rdd_50points(data_year_sf, border_points[i,],
-                                     include_slope = spec$include_slope, 
+                                     include_geology = spec$include_geology, 
                                      exclude_border = spec$exclude_border,
                                      include_enslaved = spec$include_enslaved,
                                      include_ph = spec$include_ph,
@@ -385,7 +385,7 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
     
     result <- perform_rdd_robustness(
       data_year_sf,
-      include_slope = spec$include_slope,
+      include_geology = spec$include_geology,
       exclude_border = spec$exclude_border,
       include_enslaved = spec$include_enslaved,
       include_ph = spec$include_ph,
