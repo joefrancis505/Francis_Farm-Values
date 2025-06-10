@@ -1,198 +1,419 @@
 RDD ANALYSIS RESULTS
 Year: 1900
 Analysis Date: 2025-06-10
-Kernel: Triangular, Bandwidth Selector: MSERD
-==========================================================================================
+Includes both linear (p1) and quadratic (p2) polynomial results
+Clustered results use clustering by nearest border point
+====================================================================================================
 
-==========================================================================================
+====================================================================================================
 RDD Results: Basic Model (Year: 1900)
-Kernel: Triangular, Bandwidth Selector: MSERD
-==========================================================================================
+Includes both linear (p1) and quadratic (p2) polynomial results
+Clustered results use clustering by nearest border point
+====================================================================================================
 
-Segment                        Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
-------------------------------------------------------------------------------------------
-Border Point 1               -0.4476     0.1671     0.0074          111           70       172.00       172.00
-Border Point 2               -0.2990     0.0694     0.0000          112           43       170.24       170.24
-Border Point 3               -0.0505     0.1047     0.6294           26           20        44.48        44.48
-Border Point 4                0.3453     0.3078     0.2620           53           39       111.39       111.39
-Border Point 5                0.6852     0.5371     0.2021           23           25        61.57        61.57
-Border Point 6                0.8451     0.7062     0.2314           17           26        40.12        40.12
-Border Point 7               -0.0634     0.1960     0.7463           24           35        67.82        67.82
-Border Point 8               -0.0247     0.2702     0.9273           19           29        52.17        52.17
-Border Point 9                0.1395     0.3099     0.6525           28           28        62.69        62.69
-Border Point 10               0.0501     0.2059     0.8077           34           40        67.30        67.30
-Border Point 11               0.3919     0.1719     0.0226           70           57       110.56       110.56
-Border Point 12               0.2019     0.1858     0.2771           52           57        88.00        88.00
-Border Point 13               0.2425     0.2880     0.3998           31           42        69.48        69.48
-Border Point 14              -0.2665     0.1783     0.1348           16           27        43.10        43.10
-Border Point 15               0.0879     0.2058     0.6691           31           23        57.44        57.44
-Border Point 16               0.0286     0.1943     0.8828           27           25        57.84        57.84
-Border Point 17              -0.1791     0.1959     0.3607           49           42       103.75       103.75
-Border Point 18              -0.3078     0.3349     0.3580           25           46        82.61        82.61
-Border Point 19              -0.1896     0.3340     0.5703           71           69       120.94       120.94
-Border Point 20              -0.2864     0.1934     0.1387          159           99       233.39       233.39
-Overall                      -0.0122     0.1055     0.9078          292          303        96.35        96.35
-Robust: mserd triangular     -0.0122     0.1055     0.9078          292          303        96.35        96.35
-Robust: msetwo triangular    -0.0941     0.0883     0.2865          328          528       108.49       176.51
-Robust: msesum triangular    -0.0195     0.0887     0.8263          401          431       143.62       143.62
-Robust: cerrd triangular      0.0023     0.1272     0.9853          203          223        64.98        64.98
-Robust: certwo triangular    -0.0370     0.1029     0.7190          228          367        73.17       119.04
-Robust: cersum triangular    -0.0235     0.1052     0.8229          294          307        96.86        96.86
-Robust: mserd uniform        -0.0293     0.1034     0.7769          250          261        78.84        78.84
-Robust: msetwo uniform       -0.1853     0.0796     0.0200          415          419       150.90       139.00
-Robust: msesum uniform        0.0171     0.0936     0.8548          317          330       104.05       104.05
-Robust: cerrd uniform        -0.0030     0.1231     0.9804          179          192        53.17        53.17
-Robust: certwo uniform       -0.0201     0.0978     0.8370          310          298       101.77        93.74
-Robust: cersum uniform       -0.0908     0.1120     0.4179          221          236        70.17        70.17
-Robust: mserd epanechnikov    -0.0303     0.1071     0.7771          269          283        86.39        86.39
-Robust: msetwo epanechnikov    -0.1015     0.0875     0.2464          333          497       111.46       165.37
-Robust: msesum epanechnikov     0.0059     0.0894     0.9470          382          405       132.58       132.58
-Robust: cerrd epanechnikov     0.0060     0.1277     0.9625          188          205        58.26        58.26
-Robust: certwo epanechnikov    -0.0498     0.1014     0.6234          232          349        75.17       111.52
-Robust: cersum epanechnikov    -0.0350     0.1053     0.7400          273          290        89.41        89.41
-==========================================================================================
+Segment                                                 Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
+------------------------------------------------------------------------------------------------------------------------
+Border Point 1                                        -0.4476     0.1671     0.0074          111           70       172.00       172.00
+Border Point 2                                        -0.2990     0.0694     0.0000          112           43       170.24       170.24
+Border Point 3                                        -0.0505     0.1047     0.6294           26           20        44.48        44.48
+Border Point 4                                         0.3453     0.3078     0.2620           53           39       111.39       111.39
+Border Point 5                                         0.6852     0.5371     0.2021           23           25        61.57        61.57
+Border Point 6                                         0.8451     0.7062     0.2314           17           26        40.12        40.12
+Border Point 7                                        -0.0634     0.1960     0.7463           24           35        67.82        67.82
+Border Point 8                                        -0.0247     0.2702     0.9273           19           29        52.17        52.17
+Border Point 9                                         0.1395     0.3099     0.6525           28           28        62.69        62.69
+Border Point 10                                        0.0501     0.2059     0.8077           34           40        67.30        67.30
+Border Point 11                                        0.3919     0.1719     0.0226           70           57       110.56       110.56
+Border Point 12                                        0.2019     0.1858     0.2771           52           57        88.00        88.00
+Border Point 13                                        0.2425     0.2880     0.3998           31           42        69.48        69.48
+Border Point 14                                       -0.2665     0.1783     0.1348           16           27        43.10        43.10
+Border Point 15                                        0.0879     0.2058     0.6691           31           23        57.44        57.44
+Border Point 16                                        0.0286     0.1943     0.8828           27           25        57.84        57.84
+Border Point 17                                       -0.1791     0.1959     0.3607           49           42       103.75       103.75
+Border Point 18                                       -0.3078     0.3349     0.3580           25           46        82.61        82.61
+Border Point 19                                       -0.1896     0.3340     0.5703           71           69       120.94       120.94
+Border Point 20                                       -0.2864     0.1934     0.1387          159           99       233.39       233.39
+Overall                                               -0.0122     0.1055     0.9078          292          303        96.35        96.35
+Robust: mserd triangular p1                           -0.0122     0.1055     0.9078          292          303        96.35        96.35
+Robust: msetwo triangular p1                          -0.0941     0.0883     0.2865          328          528       108.49       176.51
+Robust: msesum triangular p1                          -0.0195     0.0887     0.8263          401          431       143.62       143.62
+Robust: cerrd triangular p1                            0.0023     0.1272     0.9853          203          223        64.98        64.98
+Robust: certwo triangular p1                          -0.0370     0.1029     0.7190          228          367        73.17       119.04
+Robust: cersum triangular p1                          -0.0235     0.1052     0.8229          294          307        96.86        96.86
+Robust: mserd uniform p1                              -0.0293     0.1034     0.7769          250          261        78.84        78.84
+Robust: msetwo uniform p1                             -0.1853     0.0796     0.0200          415          419       150.90       139.00
+Robust: msesum uniform p1                              0.0171     0.0936     0.8548          317          330       104.05       104.05
+Robust: cerrd uniform p1                              -0.0030     0.1231     0.9804          179          192        53.17        53.17
+Robust: certwo uniform p1                             -0.0201     0.0978     0.8370          310          298       101.77        93.74
+Robust: cersum uniform p1                             -0.0908     0.1120     0.4179          221          236        70.17        70.17
+Robust: mserd epanechnikov p1                         -0.0303     0.1071     0.7771          269          283        86.39        86.39
+Robust: msetwo epanechnikov p1                        -0.1015     0.0875     0.2464          333          497       111.46       165.37
+Robust: msesum epanechnikov p1                         0.0059     0.0894     0.9470          382          405       132.58       132.58
+Robust: cerrd epanechnikov p1                          0.0060     0.1277     0.9625          188          205        58.26        58.26
+Robust: certwo epanechnikov p1                        -0.0498     0.1014     0.6234          232          349        75.17       111.52
+Robust: cersum epanechnikov p1                        -0.0350     0.1053     0.7400          273          290        89.41        89.41
+Robust: mserd triangular p2                            0.0119     0.1013     0.9067          582          663       234.40       234.40
+Robust: msetwo triangular p2                           0.0053     0.0999     0.9578          584          691       235.61       246.11
+Robust: msesum triangular p2                          -0.0151     0.0947     0.8735          653          745       272.64       272.64
+Robust: cerrd triangular p2                            0.0267     0.1244     0.8298          410          449       149.43       149.43
+Robust: certwo triangular p2                           0.0370     0.1217     0.7614          414          475       150.20       156.90
+Robust: cersum triangular p2                           0.0642     0.1159     0.5799          460          519       173.81       173.81
+Robust: mserd uniform p2                              -0.0708     0.0961     0.4614          567          642       224.00       224.00
+Robust: msetwo uniform p2                             -0.0769     0.0896     0.3904          534          848       209.30       327.47
+Robust: msesum uniform p2                             -0.0699     0.0954     0.4638          574          650       229.09       229.09
+Robust: cerrd uniform p2                               0.0772     0.1187     0.5153          401          430       142.80       142.80
+Robust: certwo uniform p2                             -0.0504     0.1078     0.6401          384          605       133.43       208.76
+Robust: cersum uniform p2                              0.0927     0.1178     0.4317          406          437       146.04       146.04
+Robust: mserd epanechnikov p2                          0.0040     0.1001     0.9685          574          650       228.83       228.83
+Robust: msetwo epanechnikov p2                        -0.0237     0.0977     0.8081          569          715       225.35       258.12
+Robust: msesum epanechnikov p2                        -0.0311     0.0942     0.7412          636          721       261.96       261.96
+Robust: cerrd epanechnikov p2                          0.0242     0.1225     0.8432          406          437       145.88       145.88
+Robust: certwo epanechnikov p2                         0.0424     0.1175     0.7182          401          495       143.66       164.55
+Robust: cersum epanechnikov p2                         0.0726     0.1154     0.5295          445          504       167.00       167.00
+Robust Clustered: mserd triangular p1                 -0.0136     0.1485     0.9269          395          419       138.75       138.75
+Robust Clustered: msetwo triangular p1                -0.1220     0.1550     0.4311          417          663       151.66       234.98
+Robust Clustered: msesum triangular p1                -0.1205     0.1556     0.4387          516          580       197.77       197.77
+Robust Clustered: cerrd triangular p1                 -0.0036     0.1461     0.9804          340          356       115.38       115.38
+Robust Clustered: certwo triangular p1                -0.1044     0.1540     0.4980          369          573       126.11       195.40
+Robust Clustered: cersum triangular p1                -0.0765     0.1525     0.6160          441          495       164.46       164.46
+Robust Clustered: mserd uniform p1                     0.0125     0.1495     0.9333          331          347       111.08       111.08
+Robust Clustered: msetwo uniform p1                   -0.3312     0.1663     0.0464          490          536       188.19       180.30
+Robust Clustered: msesum uniform p1                   -0.1339     0.1681     0.4258          407          441       147.14       147.14
+Robust Clustered: cerrd uniform p1                     0.0022     0.1491     0.9880          282          297        92.37        92.37
+Robust Clustered: certwo uniform p1                   -0.2190     0.1691     0.1955          427          452       156.49       149.93
+Robust Clustered: cersum uniform p1                   -0.0468     0.1562     0.7645          359          377       122.36       122.36
+Robust Clustered: mserd epanechnikov p1                0.0050     0.1475     0.9729          361          382       124.45       124.45
+Robust Clustered: msetwo epanechnikov p1              -0.1771     0.1588     0.2647          448          627       168.42       218.16
+Robust Clustered: msesum epanechnikov p1              -0.0844     0.1571     0.5911          443          500       166.60       166.60
+Robust Clustered: cerrd epanechnikov p1               -0.0100     0.1486     0.9463          316          327       103.49       103.49
+Robust Clustered: certwo epanechnikov p1              -0.1374     0.1568     0.3808          397          539       140.06       181.42
+Robust Clustered: cersum epanechnikov p1              -0.0235     0.1512     0.8764          395          419       138.54       138.54
+Robust Clustered: mserd triangular p2                  0.0087     0.1539     0.9547          599          676       239.54       239.54
+Robust Clustered: msetwo triangular p2                 0.0085     0.1543     0.9562          613          684       246.88       244.51
+Robust Clustered: msesum triangular p2                -0.0045     0.1555     0.9771          630          716       258.50       258.50
+Robust Clustered: cerrd triangular p2                  0.0558     0.1538     0.7166          504          572       194.01       194.01
+Robust Clustered: certwo triangular p2                 0.0557     0.1537     0.7172          518          580       199.96       198.04
+Robust Clustered: cersum triangular p2                 0.0444     0.1534     0.7724          534          605       209.37       209.37
+Robust Clustered: mserd uniform p2                    -0.0461     0.1603     0.7736          562          632       219.99       219.99
+Robust Clustered: msetwo uniform p2                   -0.0799     0.1655     0.6294          572          710       227.41       254.77
+Robust Clustered: msesum uniform p2                   -0.0678     0.1658     0.6828          596          673       238.89       238.89
+Robust Clustered: cerrd uniform p2                     0.0546     0.1632     0.7380          470          533       178.18       178.18
+Robust Clustered: certwo uniform p2                   -0.0054     0.1610     0.9730          478          603       184.19       206.35
+Robust Clustered: cersum uniform p2                   -0.0042     0.1618     0.9795          502          571       193.48       193.48
+Robust Clustered: mserd epanechnikov p2                0.0007     0.1561     0.9966          579          659       232.12       232.12
+Robust Clustered: msetwo epanechnikov p2              -0.0012     0.1566     0.9938          584          669       234.88       237.31
+Robust Clustered: msesum epanechnikov p2              -0.0149     0.1577     0.9247          614          696       247.46       247.46
+Robust Clustered: cerrd epanechnikov p2                0.0652     0.1556     0.6753          489          556       188.01       188.01
+Robust Clustered: certwo epanechnikov p2               0.0621     0.1557     0.6900          494          565       190.24       192.21
+Robust Clustered: cersum epanechnikov p2               0.0508     0.1557     0.7442          520          588       200.43       200.43
+========================================================================================================================
 
-==========================================================================================
+====================================================================================================
 RDD Results: With Geography Controls (Year: 1900)
-Kernel: Triangular, Bandwidth Selector: MSERD
-==========================================================================================
+Includes both linear (p1) and quadratic (p2) polynomial results
+Clustered results use clustering by nearest border point
+====================================================================================================
 
-Segment                        Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
-------------------------------------------------------------------------------------------
-Border Point 1               -0.2732     0.1858     0.1414           78           51       125.18       125.18
-Border Point 2               -0.2883     0.0668     0.0000          111           43       166.40       166.40
-Border Point 3               -0.1219     0.0461     0.0082           25           19        42.74        42.74
-Border Point 4                0.3161     0.2568     0.2184           55           39       116.63       116.63
-Border Point 5                0.3311     0.4233     0.4341           23           27        65.59        65.59
-Border Point 6                0.7653     0.8084     0.3438           13           19        31.22        31.22
-Border Point 7               -0.3089     0.1290     0.0166           22           33        63.74        63.74
-Border Point 8               -0.2015     0.1450     0.1647           18           27        50.35        50.35
-Border Point 9               -0.1255     0.1792     0.4837           28           27        57.02        57.02
-Border Point 10               0.1387     0.1976     0.4828           30           36        62.29        62.29
-Border Point 11               0.4269     0.1600     0.0076           67           56       103.38       103.38
-Border Point 12               0.3887     0.1279     0.0024           74           70       121.82       121.82
-Border Point 13               0.1219     0.1625     0.4532           44           63       108.84       108.84
-Border Point 14              -0.1811     0.1480     0.2211           18           30        47.39        47.39
-Border Point 15               0.0821     0.1301     0.5279           50           30        92.90        92.90
-Border Point 16               0.0154     0.1618     0.9244           35           27        73.53        73.53
-Border Point 17              -0.2026     0.1933     0.2948           52           44       108.96       108.96
-Border Point 18              -0.1811     0.3025     0.5495           30           51        93.82        93.82
-Border Point 19              -0.0238     0.2745     0.9309           77           81       140.73       140.73
-Border Point 20              -0.0039     0.2271     0.9862          102           79       164.19       164.19
-Overall                       0.0580     0.1003     0.5630          285          298        93.53        93.53
-Robust: mserd triangular      0.0580     0.1003     0.5630          285          298        93.53        93.53
-Robust: msetwo triangular    -0.0064     0.0831     0.9390          308          544       101.46       182.44
-Robust: msesum triangular     0.0925     0.0848     0.2754          394          416       137.85       137.85
-Robust: cerrd triangular      0.0702     0.1211     0.5620          196          216        63.10        63.10
-Robust: certwo triangular     0.0209     0.0966     0.8287          217          377        68.44       123.07
-Robust: cersum triangular     0.0545     0.1005     0.5877          283          298        92.99        92.99
-Robust: mserd uniform         0.0153     0.1177     0.8963          194          208        59.95        59.95
-Robust: msetwo uniform        0.0048     0.0877     0.9566          225          408        71.93       134.64
-Robust: msesum uniform        0.0925     0.0925     0.3175          299          314        98.88        98.88
-Robust: cerrd uniform         0.0642     0.1377     0.6412          137          148        40.44        40.44
-Robust: certwo uniform        0.0229     0.1022     0.8226          159          293        48.52        90.83
-Robust: cersum uniform       -0.0158     0.1067     0.8823          214          229        66.70        66.70
-Robust: mserd epanechnikov     0.0406     0.1008     0.6874          264          279        85.50        85.50
-Robust: msetwo epanechnikov    -0.0194     0.0836     0.8164          285          512        93.88       170.17
-Robust: msesum epanechnikov     0.0988     0.0858     0.2494          369          383       126.08       126.08
-Robust: cerrd epanechnikov     0.0648     0.1204     0.5902          188          205        57.68        57.68
-Robust: certwo epanechnikov     0.0150     0.0968     0.8771          196          356        63.33       114.80
-Robust: cersum epanechnikov     0.0362     0.1011     0.7205          262          278        85.06        85.06
-==========================================================================================
+Segment                                                 Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
+------------------------------------------------------------------------------------------------------------------------
+Border Point 1                                        -0.2732     0.1858     0.1414           78           51       125.18       125.18
+Border Point 2                                        -0.2883     0.0668     0.0000          111           43       166.40       166.40
+Border Point 3                                        -0.1219     0.0461     0.0082           25           19        42.74        42.74
+Border Point 4                                         0.3161     0.2568     0.2184           55           39       116.63       116.63
+Border Point 5                                         0.3311     0.4233     0.4341           23           27        65.59        65.59
+Border Point 6                                         0.7653     0.8084     0.3438           13           19        31.22        31.22
+Border Point 7                                        -0.3089     0.1290     0.0166           22           33        63.74        63.74
+Border Point 8                                        -0.2015     0.1450     0.1647           18           27        50.35        50.35
+Border Point 9                                        -0.1255     0.1792     0.4837           28           27        57.02        57.02
+Border Point 10                                        0.1387     0.1976     0.4828           30           36        62.29        62.29
+Border Point 11                                        0.4269     0.1600     0.0076           67           56       103.38       103.38
+Border Point 12                                        0.3887     0.1279     0.0024           74           70       121.82       121.82
+Border Point 13                                        0.1219     0.1625     0.4532           44           63       108.84       108.84
+Border Point 14                                       -0.1811     0.1480     0.2211           18           30        47.39        47.39
+Border Point 15                                        0.0821     0.1301     0.5279           50           30        92.90        92.90
+Border Point 16                                        0.0154     0.1618     0.9244           35           27        73.53        73.53
+Border Point 17                                       -0.2026     0.1933     0.2948           52           44       108.96       108.96
+Border Point 18                                       -0.1811     0.3025     0.5495           30           51        93.82        93.82
+Border Point 19                                       -0.0238     0.2745     0.9309           77           81       140.73       140.73
+Border Point 20                                       -0.0039     0.2271     0.9862          102           79       164.19       164.19
+Overall                                                0.0580     0.1003     0.5630          285          298        93.53        93.53
+Robust: mserd triangular p1                            0.0580     0.1003     0.5630          285          298        93.53        93.53
+Robust: msetwo triangular p1                          -0.0064     0.0831     0.9390          308          544       101.46       182.44
+Robust: msesum triangular p1                           0.0925     0.0848     0.2754          394          416       137.85       137.85
+Robust: cerrd triangular p1                            0.0702     0.1211     0.5620          196          216        63.10        63.10
+Robust: certwo triangular p1                           0.0209     0.0966     0.8287          217          377        68.44       123.07
+Robust: cersum triangular p1                           0.0545     0.1005     0.5877          283          298        92.99        92.99
+Robust: mserd uniform p1                               0.0153     0.1177     0.8963          194          208        59.95        59.95
+Robust: msetwo uniform p1                              0.0048     0.0877     0.9566          225          408        71.93       134.64
+Robust: msesum uniform p1                              0.0925     0.0925     0.3175          299          314        98.88        98.88
+Robust: cerrd uniform p1                               0.0642     0.1377     0.6412          137          148        40.44        40.44
+Robust: certwo uniform p1                              0.0229     0.1022     0.8226          159          293        48.52        90.83
+Robust: cersum uniform p1                             -0.0158     0.1067     0.8823          214          229        66.70        66.70
+Robust: mserd epanechnikov p1                          0.0406     0.1008     0.6874          264          279        85.50        85.50
+Robust: msetwo epanechnikov p1                        -0.0194     0.0836     0.8164          285          512        93.88       170.17
+Robust: msesum epanechnikov p1                         0.0988     0.0858     0.2494          369          383       126.08       126.08
+Robust: cerrd epanechnikov p1                          0.0648     0.1204     0.5902          188          205        57.68        57.68
+Robust: certwo epanechnikov p1                         0.0150     0.0968     0.8771          196          356        63.33       114.80
+Robust: cersum epanechnikov p1                         0.0362     0.1011     0.7205          262          278        85.06        85.06
+Robust: mserd triangular p2                            0.0707     0.0951     0.4571          584          666       235.78       235.78
+Robust: msetwo triangular p2                           0.0395     0.0889     0.6566          576          831       230.16       317.18
+Robust: msesum triangular p2                           0.0455     0.0894     0.6110          648          739       270.36       270.36
+Robust: cerrd triangular p2                            0.0747     0.1163     0.5207          415          453       150.36       150.36
+Robust: certwo triangular p2                           0.0450     0.1054     0.6690          407          591       146.77       202.27
+Robust: cersum triangular p2                           0.1023     0.1093     0.3493          453          516       172.41       172.41
+Robust: mserd uniform p2                               0.0684     0.0949     0.4708          517          587       199.68       199.68
+Robust: msetwo uniform p2                              0.0279     0.0907     0.7579          469          763       178.43       282.43
+Robust: msesum uniform p2                              0.0542     0.0959     0.5719          510          574       196.10       196.10
+Robust: cerrd uniform p2                               0.0948     0.1162     0.4147          372          387       127.34       127.34
+Robust: certwo uniform p2                             -0.0137     0.1090     0.9000          337          536       113.79       180.11
+Robust: cersum uniform p2                              0.0656     0.1174     0.5766          362          382       125.06       125.06
+Robust: mserd epanechnikov p2                          0.0729     0.0949     0.4423          566          642       224.59       224.59
+Robust: msetwo epanechnikov p2                         0.0359     0.0894     0.6883          545          811       215.07       307.87
+Robust: msesum epanechnikov p2                         0.0410     0.0903     0.6499          615          704       250.44       250.44
+Robust: cerrd epanechnikov p2                          0.0652     0.1157     0.5730          401          431       143.22       143.22
+Robust: certwo epanechnikov p2                         0.0298     0.1049     0.7764          390          574       137.15       196.33
+Robust: cersum epanechnikov p2                         0.0988     0.1100     0.3693          432          484       159.70       159.70
+Robust Clustered: mserd triangular p1                  0.0841     0.1431     0.5568          361          380       123.78       123.78
+Robust Clustered: msetwo triangular p1                 0.0098     0.1334     0.9412          376          632       129.41       219.90
+Robust Clustered: msesum triangular p1                 0.0603     0.1402     0.6672          432          484       159.29       159.29
+Robust Clustered: cerrd triangular p1                  0.0655     0.1491     0.6602          315          327       102.93       102.93
+Robust Clustered: certwo triangular p1                -0.0009     0.1391     0.9948          327          545       107.61       182.86
+Robust Clustered: cersum triangular p1                 0.0772     0.1424     0.5878          382          404       132.46       132.46
+Robust Clustered: mserd uniform p1                     0.0919     0.1517     0.5444          271          283        86.66        86.66
+Robust Clustered: msetwo uniform p1                   -0.0374     0.1439     0.7951          272          485        88.76       160.20
+Robust Clustered: msesum uniform p1                    0.0402     0.1435     0.7792          377          394       129.93       129.93
+Robust Clustered: cerrd uniform p1                     0.0319     0.1558     0.8377          225          245        72.07        72.07
+Robust Clustered: certwo uniform p1                    0.0136     0.1526     0.9290          229          407        73.81       133.21
+Robust Clustered: cersum uniform p1                    0.0975     0.1433     0.4963          328          339       108.05       108.05
+Robust Clustered: mserd epanechnikov p1                0.0866     0.1429     0.5446          340          356       115.24       115.24
+Robust Clustered: msetwo epanechnikov p1               0.0052     0.1343     0.9692          349          596       118.90       204.19
+Robust Clustered: msesum epanechnikov p1               0.0682     0.1424     0.6319          406          437       145.99       145.99
+Robust Clustered: cerrd epanechnikov p1                0.0508     0.1528     0.7397          291          302        95.83        95.83
+Robust Clustered: certwo epanechnikov p1              -0.0099     0.1436     0.9452          299          510        98.87       169.80
+Robust Clustered: cersum epanechnikov p1               0.0792     0.1427     0.5788          358          373       121.40       121.40
+Robust Clustered: mserd triangular p2                  0.0628     0.1498     0.6749          613          698       248.38       248.38
+Robust Clustered: msetwo triangular p2                 0.0404     0.1456     0.7814          601          828       240.49       316.15
+Robust Clustered: msesum triangular p2                 0.0413     0.1487     0.7812          665          754       277.11       277.11
+Robust Clustered: cerrd triangular p2                  0.0968     0.1556     0.5339          521          591       201.17       201.17
+Robust Clustered: certwo triangular p2                 0.0468     0.1502     0.7555          508          713       194.78       256.06
+Robust Clustered: cersum triangular p2                 0.0740     0.1520     0.6264          566          642       224.44       224.44
+Robust Clustered: mserd uniform p2                     0.0577     0.1522     0.7045          521          591       201.04       201.04
+Robust Clustered: msetwo uniform p2                    0.0299     0.1520     0.8438          450          726       171.08       264.47
+Robust Clustered: msesum uniform p2                    0.0361     0.1510     0.8111          533          606       209.71       209.71
+Robust Clustered: cerrd uniform p2                     0.1485     0.1649     0.3678          438          492       162.83       162.83
+Robust Clustered: certwo uniform p2                    0.0190     0.1499     0.8993          395          617       138.56       214.20
+Robust Clustered: cersum uniform p2                    0.1109     0.1603     0.4892          447          511       169.85       169.85
+Robust Clustered: mserd epanechnikov p2                0.0725     0.1517     0.6328          572          648       227.64       227.64
+Robust Clustered: msetwo epanechnikov p2               0.0345     0.1484     0.8162          564          778       221.01       292.30
+Robust Clustered: msesum epanechnikov p2               0.0398     0.1501     0.7910          625          710       254.86       254.86
+Robust Clustered: cerrd epanechnikov p2                0.1160     0.1585     0.4645          478          549       184.38       184.38
+Robust Clustered: certwo epanechnikov p2               0.0433     0.1516     0.7749          472          668       179.00       236.75
+Robust Clustered: cersum epanechnikov p2               0.0872     0.1554     0.5747          529          603       206.42       206.42
+========================================================================================================================
 
-==========================================================================================
+====================================================================================================
 RDD Results: With Geography Controls (No Border Counties) (Year: 1900)
-Kernel: Triangular, Bandwidth Selector: MSERD
-==========================================================================================
+Includes both linear (p1) and quadratic (p2) polynomial results
+Clustered results use clustering by nearest border point
+====================================================================================================
 
-Segment                        Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
-------------------------------------------------------------------------------------------
-Border Point 1               -0.5129     0.3410     0.1325           64           39       122.82       122.82
-Border Point 2               -0.5034     0.1088     0.0000           92           31       156.33       156.33
-Border Point 3                0.0000     0.0000     0.0000            0            0         0.00         0.00
-Border Point 4               -0.3659     0.2151     0.0890           28           18        76.20        76.20
-Border Point 5               -2.2752     0.7816     0.0036            7            7        38.50        38.50
-Border Point 6                0.0000     0.0000     0.0000            0            0         0.00         0.00
-Border Point 7               -0.5895     0.3500     0.0921           11           21        52.86        52.86
-Border Point 8               -0.4340     0.3543     0.2206            8           17        44.35        44.35
-Border Point 9               -0.2971     0.5224     0.5695           10            9        40.47        40.47
-Border Point 10               1.4372     0.4985     0.0039           12           13        42.76        42.76
-Border Point 11               1.0031     0.2363     0.0000           35           29        71.00        71.00
-Border Point 12               0.9113     0.2196     0.0000           32           37        72.23        72.23
-Border Point 13               0.1094     0.2106     0.6033           21           29        68.57        68.57
-Border Point 14               0.0000     0.0000     0.0000            0            0         0.00         0.00
-Border Point 15               0.0343     0.2905     0.9059           38           21        86.72        86.72
-Border Point 16              -0.0106     0.4488     0.9812           19           15        61.92        61.92
-Border Point 17              -1.3106     0.6098     0.0316           29           25        77.40        77.40
-Border Point 18              -0.4511     0.5755     0.4331           15           34        77.76        77.76
-Border Point 19              -0.2798     0.5119     0.5846           58           61       124.17       124.17
-Border Point 20               0.0239     0.4054     0.9531           93           70       171.93       171.93
-Overall                      -0.0691     0.2292     0.7631          191          203        84.45        84.45
-Robust: mserd triangular     -0.0691     0.2292     0.7631          191          203        84.45        84.45
-Robust: msetwo triangular    -0.0078     0.2310     0.9732          177          466        77.62       181.52
-Robust: msesum triangular     0.0051     0.1271     0.9683          344          379       150.57       150.57
-Robust: cerrd triangular     -0.1424     0.3841     0.7109          116          130        57.13        57.13
-Robust: certwo triangular     0.0454     0.4089     0.9115          103          303        52.51       122.80
-Robust: cersum triangular    -0.0160     0.1844     0.9307          240          250       101.87       101.87
-Robust: mserd uniform        -0.0810     0.2234     0.7170          151          162        70.37        70.37
-Robust: msetwo uniform        0.0385     0.2667     0.8852          116          358        56.60       143.73
-Robust: msesum uniform       -0.0816     0.2176     0.7077          153          167        71.50        71.50
-Robust: cerrd uniform        -0.1657     0.4119     0.6874           84           99        47.61        47.61
-Robust: certwo uniform       -0.0805     0.5654     0.8867           56          233        38.29        97.24
-Robust: cersum uniform       -0.1260     0.3876     0.7452           88          103        48.37        48.37
-Robust: mserd epanechnikov    -0.0737     0.2292     0.7477          182          190        80.36        80.36
-Robust: msetwo epanechnikov    -0.0280     0.1717     0.8704          214          441        93.71       171.55
-Robust: msesum epanechnikov    -0.0240     0.1979     0.9034          202          217        90.05        90.05
-Robust: cerrd epanechnikov    -0.1487     0.3943     0.7061          113          119        54.37        54.37
-Robust: certwo epanechnikov     0.0067     0.2962     0.9821          125          283        63.40       116.06
-Robust: cersum epanechnikov    -0.1624     0.3375     0.6304          123          139        60.92        60.92
-==========================================================================================
+Segment                                                 Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
+------------------------------------------------------------------------------------------------------------------------
+Border Point 1                                        -0.5129     0.3410     0.1325           64           39       122.82       122.82
+Border Point 2                                        -0.5034     0.1088     0.0000           92           31       156.33       156.33
+Border Point 3                                         0.0000     0.0000     0.0000            0            0         0.00         0.00
+Border Point 4                                        -0.3659     0.2151     0.0890           28           18        76.20        76.20
+Border Point 5                                        -2.2752     0.7816     0.0036            7            7        38.50        38.50
+Border Point 6                                         0.0000     0.0000     0.0000            0            0         0.00         0.00
+Border Point 7                                        -0.5895     0.3500     0.0921           11           21        52.86        52.86
+Border Point 8                                        -0.4340     0.3543     0.2206            8           17        44.35        44.35
+Border Point 9                                        -0.2971     0.5224     0.5695           10            9        40.47        40.47
+Border Point 10                                        1.4372     0.4985     0.0039           12           13        42.76        42.76
+Border Point 11                                        1.0031     0.2363     0.0000           35           29        71.00        71.00
+Border Point 12                                        0.9113     0.2196     0.0000           32           37        72.23        72.23
+Border Point 13                                        0.1094     0.2106     0.6033           21           29        68.57        68.57
+Border Point 14                                        0.0000     0.0000     0.0000            0            0         0.00         0.00
+Border Point 15                                        0.0343     0.2905     0.9059           38           21        86.72        86.72
+Border Point 16                                       -0.0106     0.4488     0.9812           19           15        61.92        61.92
+Border Point 17                                       -1.3106     0.6098     0.0316           29           25        77.40        77.40
+Border Point 18                                       -0.4511     0.5755     0.4331           15           34        77.76        77.76
+Border Point 19                                       -0.2798     0.5119     0.5846           58           61       124.17       124.17
+Border Point 20                                        0.0239     0.4054     0.9531           93           70       171.93       171.93
+Overall                                               -0.0691     0.2292     0.7631          191          203        84.45        84.45
+Robust: mserd triangular p1                           -0.0691     0.2292     0.7631          191          203        84.45        84.45
+Robust: msetwo triangular p1                          -0.0078     0.2310     0.9732          177          466        77.62       181.52
+Robust: msesum triangular p1                           0.0051     0.1271     0.9683          344          379       150.57       150.57
+Robust: cerrd triangular p1                           -0.1424     0.3841     0.7109          116          130        57.13        57.13
+Robust: certwo triangular p1                           0.0454     0.4089     0.9115          103          303        52.51       122.80
+Robust: cersum triangular p1                          -0.0160     0.1844     0.9307          240          250       101.87       101.87
+Robust: mserd uniform p1                              -0.0810     0.2234     0.7170          151          162        70.37        70.37
+Robust: msetwo uniform p1                              0.0385     0.2667     0.8852          116          358        56.60       143.73
+Robust: msesum uniform p1                             -0.0816     0.2176     0.7077          153          167        71.50        71.50
+Robust: cerrd uniform p1                              -0.1657     0.4119     0.6874           84           99        47.61        47.61
+Robust: certwo uniform p1                             -0.0805     0.5654     0.8867           56          233        38.29        97.24
+Robust: cersum uniform p1                             -0.1260     0.3876     0.7452           88          103        48.37        48.37
+Robust: mserd epanechnikov p1                         -0.0737     0.2292     0.7477          182          190        80.36        80.36
+Robust: msetwo epanechnikov p1                        -0.0280     0.1717     0.8704          214          441        93.71       171.55
+Robust: msesum epanechnikov p1                        -0.0240     0.1979     0.9034          202          217        90.05        90.05
+Robust: cerrd epanechnikov p1                         -0.1487     0.3943     0.7061          113          119        54.37        54.37
+Robust: certwo epanechnikov p1                         0.0067     0.2962     0.9821          125          283        63.40       116.06
+Robust: cersum epanechnikov p1                        -0.1624     0.3375     0.6304          123          139        60.92        60.92
+Robust: mserd triangular p2                            0.0547     0.1767     0.7568          499          570       226.06       226.06
+Robust: msetwo triangular p2                           0.0605     0.1847     0.7433          455          695       203.08       287.71
+Robust: msesum triangular p2                           0.0978     0.1947     0.6154          458          523       205.19       205.19
+Robust: cerrd triangular p2                           -0.0329     0.2876     0.9090          333          359       144.63       144.63
+Robust: certwo triangular p2                          -0.0252     0.3056     0.9342          306          474       129.93       184.07
+Robust: cersum triangular p2                          -0.1524     0.3260     0.6401          310          328       131.28       131.28
+Robust: mserd uniform p2                               0.1968     0.1918     0.3048          394          454       176.21       176.21
+Robust: msetwo uniform p2                              0.0996     0.1989     0.6168          361          615       158.34       245.68
+Robust: msesum uniform p2                              0.2848     0.2226     0.2009          363          413       161.05       161.05
+Robust: cerrd uniform p2                              -0.2062     0.3402     0.5445          264          278       112.74       112.74
+Robust: certwo uniform p2                              0.0364     0.3488     0.9168          237          403       101.30       157.18
+Robust: cersum uniform p2                             -0.2519     0.3589     0.4828          244          253       103.04       103.04
+Robust: mserd epanechnikov p2                          0.0781     0.1776     0.6600          473          545       214.73       214.73
+Robust: msetwo epanechnikov p2                         0.0693     0.1855     0.7088          426          694       192.54       287.38
+Robust: msesum epanechnikov p2                         0.1325     0.1978     0.5029          432          498       194.04       194.04
+Robust: cerrd epanechnikov p2                         -0.0511     0.2880     0.8593          322          341       137.38       137.38
+Robust: certwo epanechnikov p2                        -0.0562     0.3088     0.8557          288          474       123.18       183.86
+Robust: cersum epanechnikov p2                        -0.2054     0.3340     0.5385          290          307       124.14       124.14
+Robust Clustered: mserd triangular p1                  0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msetwo triangular p1                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msesum triangular p1                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cerrd triangular p1                  0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: certwo triangular p1                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cersum triangular p1                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: mserd uniform p1                     0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msetwo uniform p1                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msesum uniform p1                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cerrd uniform p1                     0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: certwo uniform p1                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cersum uniform p1                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: mserd epanechnikov p1                0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msetwo epanechnikov p1               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msesum epanechnikov p1               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cerrd epanechnikov p1                0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: certwo epanechnikov p1               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cersum epanechnikov p1               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: mserd triangular p2                  0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msetwo triangular p2                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msesum triangular p2                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cerrd triangular p2                  0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: certwo triangular p2                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cersum triangular p2                 0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: mserd uniform p2                     0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msetwo uniform p2                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msesum uniform p2                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cerrd uniform p2                     0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: certwo uniform p2                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cersum uniform p2                    0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: mserd epanechnikov p2                0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msetwo epanechnikov p2               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: msesum epanechnikov p2               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cerrd epanechnikov p2                0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: certwo epanechnikov p2               0.0000     0.0000     0.0000            0            0         0.00         0.00
+Robust Clustered: cersum epanechnikov p2               0.0000     0.0000     0.0000            0            0         0.00         0.00
+========================================================================================================================
 
-==========================================================================================
+====================================================================================================
 RDD Results: With Geography and Black Population Controls (Year: 1900)
-Kernel: Triangular, Bandwidth Selector: MSERD
-==========================================================================================
+Includes both linear (p1) and quadratic (p2) polynomial results
+Clustered results use clustering by nearest border point
+====================================================================================================
 
-Segment                        Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
-------------------------------------------------------------------------------------------
-Border Point 1               -0.4589     0.1620     0.0046          116           71       174.63       174.63
-Border Point 2               -0.3080     0.0642     0.0000           93           41       146.03       146.03
-Border Point 3               -0.1027     0.0467     0.0280           26           20        44.73        44.73
-Border Point 4                0.2969     0.2614     0.2561           54           39       113.33       113.33
-Border Point 5                0.3253     0.4073     0.4245           25           28        67.71        67.71
-Border Point 6                0.7755     0.8580     0.3661           12           19        29.72        29.72
-Border Point 7               -0.2658     0.1210     0.0280           24           37        69.05        69.05
-Border Point 8               -0.1965     0.1465     0.1798           19           27        51.24        51.24
-Border Point 9               -0.3830     0.1505     0.0109           28           27        59.10        59.10
-Border Point 10              -0.1350     0.1688     0.4240           39           50        84.91        84.91
-Border Point 11               0.1673     0.1636     0.3066           70           57       109.78       109.78
-Border Point 12               0.2721     0.1363     0.0460           61           64       103.82       103.82
-Border Point 13               0.1167     0.1821     0.5214           37           53        89.56        89.56
-Border Point 14              -0.0960     0.1481     0.5168           17           29        46.45        46.45
-Border Point 15               0.1288     0.1305     0.3235           50           30        91.66        91.66
-Border Point 16               0.4714     0.2287     0.0393           22           21        43.85        43.85
-Border Point 17              -0.1690     0.1980     0.3933           47           39        95.06        95.06
-Border Point 18               0.0412     0.2545     0.8714           41           72       138.98       138.98
-Border Point 19              -0.2515     0.3050     0.4096           58           57       104.35       104.35
-Border Point 20              -0.0897     0.2012     0.6559          113           85       182.86       182.86
-Overall                       0.0450     0.1021     0.6596          273          289        89.08        89.08
-Robust: mserd triangular      0.0450     0.1021     0.6596          273          289        89.08        89.08
-Robust: msetwo triangular    -0.0102     0.0847     0.9043          304          482       100.17       158.98
-Robust: msesum triangular     0.0536     0.0814     0.5105          409          444       148.56       148.56
-Robust: cerrd triangular      0.0813     0.1234     0.5098          194          207        60.10        60.10
-Robust: certwo triangular     0.0203     0.0998     0.8390          215          337        67.57       107.25
-Robust: cersum triangular     0.0436     0.0970     0.6528          304          316       100.22       100.22
-Robust: mserd uniform        -0.0015     0.1063     0.9886          205          225        65.77        65.77
-Robust: msetwo uniform       -0.0224     0.0889     0.8014          223          369        70.65       120.18
-Robust: msesum uniform        0.0474     0.0879     0.5901          315          324       102.77       102.77
-Robust: cerrd uniform         0.0475     0.1270     0.7081          148          164        44.37        44.37
-Robust: certwo uniform        0.0051     0.1047     0.9614          155          265        47.66        81.07
-Robust: cersum uniform       -0.0065     0.1028     0.9493          221          234        69.33        69.33
-Robust: mserd epanechnikov     0.0317     0.1027     0.7573          253          264        81.02        81.02
-Robust: msetwo epanechnikov    -0.0190     0.0852     0.8231          283          443        92.42       147.65
-Robust: msesum epanechnikov     0.0504     0.0832     0.5451          382          404       132.65       132.65
-Robust: cerrd epanechnikov     0.0696     0.1236     0.5734          184          193        54.66        54.66
-Robust: certwo epanechnikov     0.0072     0.1000     0.9426          196          316        62.35        99.61
-Robust: cersum epanechnikov     0.0177     0.0981     0.8572          273          289        89.49        89.49
-==========================================================================================
+Segment                                                 Coeff    Std Err    P-value     Obs Free    Obs Slave      BW Free     BW Slave
+------------------------------------------------------------------------------------------------------------------------
+Border Point 1                                        -0.4589     0.1620     0.0046          116           71       174.63       174.63
+Border Point 2                                        -0.3080     0.0642     0.0000           93           41       146.03       146.03
+Border Point 3                                        -0.1027     0.0467     0.0280           26           20        44.73        44.73
+Border Point 4                                         0.2969     0.2614     0.2561           54           39       113.33       113.33
+Border Point 5                                         0.3253     0.4073     0.4245           25           28        67.71        67.71
+Border Point 6                                         0.7755     0.8580     0.3661           12           19        29.72        29.72
+Border Point 7                                        -0.2658     0.1210     0.0280           24           37        69.05        69.05
+Border Point 8                                        -0.1965     0.1465     0.1798           19           27        51.24        51.24
+Border Point 9                                        -0.3830     0.1505     0.0109           28           27        59.10        59.10
+Border Point 10                                       -0.1350     0.1688     0.4240           39           50        84.91        84.91
+Border Point 11                                        0.1673     0.1636     0.3066           70           57       109.78       109.78
+Border Point 12                                        0.2721     0.1363     0.0460           61           64       103.82       103.82
+Border Point 13                                        0.1167     0.1821     0.5214           37           53        89.56        89.56
+Border Point 14                                       -0.0960     0.1481     0.5168           17           29        46.45        46.45
+Border Point 15                                        0.1288     0.1305     0.3235           50           30        91.66        91.66
+Border Point 16                                        0.4714     0.2287     0.0393           22           21        43.85        43.85
+Border Point 17                                       -0.1690     0.1980     0.3933           47           39        95.06        95.06
+Border Point 18                                        0.0412     0.2545     0.8714           41           72       138.98       138.98
+Border Point 19                                       -0.2515     0.3050     0.4096           58           57       104.35       104.35
+Border Point 20                                       -0.0897     0.2012     0.6559          113           85       182.86       182.86
+Overall                                                0.0450     0.1021     0.6596          273          289        89.08        89.08
+Robust: mserd triangular p1                            0.0450     0.1021     0.6596          273          289        89.08        89.08
+Robust: msetwo triangular p1                          -0.0102     0.0847     0.9043          304          482       100.17       158.98
+Robust: msesum triangular p1                           0.0536     0.0814     0.5105          409          444       148.56       148.56
+Robust: cerrd triangular p1                            0.0813     0.1234     0.5098          194          207        60.10        60.10
+Robust: certwo triangular p1                           0.0203     0.0998     0.8390          215          337        67.57       107.25
+Robust: cersum triangular p1                           0.0436     0.0970     0.6528          304          316       100.22       100.22
+Robust: mserd uniform p1                              -0.0015     0.1063     0.9886          205          225        65.77        65.77
+Robust: msetwo uniform p1                             -0.0224     0.0889     0.8014          223          369        70.65       120.18
+Robust: msesum uniform p1                              0.0474     0.0879     0.5901          315          324       102.77       102.77
+Robust: cerrd uniform p1                               0.0475     0.1270     0.7081          148          164        44.37        44.37
+Robust: certwo uniform p1                              0.0051     0.1047     0.9614          155          265        47.66        81.07
+Robust: cersum uniform p1                             -0.0065     0.1028     0.9493          221          234        69.33        69.33
+Robust: mserd epanechnikov p1                          0.0317     0.1027     0.7573          253          264        81.02        81.02
+Robust: msetwo epanechnikov p1                        -0.0190     0.0852     0.8231          283          443        92.42       147.65
+Robust: msesum epanechnikov p1                         0.0504     0.0832     0.5451          382          404       132.65       132.65
+Robust: cerrd epanechnikov p1                          0.0696     0.1236     0.5734          184          193        54.66        54.66
+Robust: certwo epanechnikov p1                         0.0072     0.1000     0.9426          196          316        62.35        99.61
+Robust: cersum epanechnikov p1                         0.0177     0.0981     0.8572          273          289        89.49        89.49
+Robust: mserd triangular p2                            0.1067     0.1014     0.2925          524          590       202.36       202.36
+Robust: msetwo triangular p2                           0.0481     0.0925     0.6033          568          727       225.30       265.82
+Robust: msesum triangular p2                           0.0351     0.0865     0.6847          679          766       286.82       286.82
+Robust: cerrd triangular p2                            0.0573     0.1252     0.6470          374          389       129.05       129.05
+Robust: certwo triangular p2                           0.0719     0.1110     0.5168          401          508       143.68       169.53
+Robust: cersum triangular p2                           0.1011     0.1060     0.3402          477          544       182.92       182.92
+Robust: mserd uniform p2                               0.0526     0.0969     0.5873          494          564       191.65       191.65
+Robust: msetwo uniform p2                              0.0176     0.0943     0.8522          468          662       177.45       234.75
+Robust: msesum uniform p2                              0.0757     0.0941     0.4216          524          590       202.47       202.47
+Robust: cerrd uniform p2                               0.0649     0.1173     0.5804          358          375       122.22       122.22
+Robust: certwo uniform p2                              0.0189     0.1140     0.8686          337          448       113.17       149.71
+Robust: cersum uniform p2                              0.0869     0.1154     0.4514          374          389       129.12       129.12
+Robust: mserd epanechnikov p2                          0.1091     0.1007     0.2787          511          573       196.36       196.36
+Robust: msetwo epanechnikov p2                         0.0383     0.0922     0.6775          533          727       209.92       266.70
+Robust: msesum epanechnikov p2                         0.0216     0.0863     0.8022          653          746       272.88       272.88
+Robust: cerrd epanechnikov p2                          0.0376     0.1233     0.7604          362          381       125.23       125.23
+Robust: certwo epanechnikov p2                         0.0547     0.1093     0.6166          384          511       133.87       170.09
+Robust: cersum epanechnikov p2                         0.1071     0.1062     0.3129          459          520       174.02       174.02
+Robust Clustered: mserd triangular p1                  0.0630     0.1435     0.6606          340          356       116.02       116.02
+Robust Clustered: msetwo triangular p1                -0.0098     0.1311     0.9406          372          574       127.12       196.85
+Robust Clustered: msesum triangular p1                 0.0044     0.1351     0.9742          463          524       174.74       174.74
+Robust Clustered: cerrd triangular p1                  0.0424     0.1539     0.7827          292          302        96.48        96.48
+Robust Clustered: certwo triangular p1                -0.0115     0.1394     0.9344          321          491       105.71       163.69
+Robust Clustered: cersum triangular p1                 0.0334     0.1396     0.8109          406          434       145.31       145.31
+Robust Clustered: mserd uniform p1                     0.0417     0.1492     0.7801          273          289        89.53        89.53
+Robust Clustered: msetwo uniform p1                   -0.0228     0.1428     0.8734          272          446        87.34       148.73
+Robust Clustered: msesum uniform p1                    0.0284     0.1419     0.8411          358          374       121.49       121.49
+Robust Clustered: cerrd uniform p1                     0.0307     0.1565     0.8443          231          251        74.45        74.45
+Robust Clustered: certwo uniform p1                   -0.0219     0.1511     0.8849          227          379        72.63       123.68
+Robust Clustered: cersum uniform p1                    0.0530     0.1399     0.7048          306          321       101.03       101.03
+Robust Clustered: mserd epanechnikov p1                0.0545     0.1456     0.7080          321          333       105.87       105.87
+Robust Clustered: msetwo epanechnikov p1              -0.0209     0.1317     0.8737          340          544       115.98       183.10
+Robust Clustered: msesum epanechnikov p1              -0.0202     0.1351     0.8811          447          508       168.98       168.98
+Robust Clustered: cerrd epanechnikov p1                0.0269     0.1561     0.8632          272          284        88.04        88.04
+Robust Clustered: certwo epanechnikov p1              -0.0183     0.1456     0.8999          292          461        96.44       152.26
+Robust Clustered: cersum epanechnikov p1               0.0200     0.1390     0.8854          398          421       140.52       140.52
+Robust Clustered: mserd triangular p2                  0.0909     0.1519     0.5493          564          638       221.90       221.90
+Robust Clustered: msetwo triangular p2                 0.0522     0.1471     0.7228          583          722       235.77       262.52
+Robust Clustered: msesum triangular p2                 0.0373     0.1466     0.7994          669          756       280.23       280.23
+Robust Clustered: cerrd triangular p2                  0.1108     0.1590     0.4859          474          534       179.72       179.72
+Robust Clustered: certwo triangular p2                 0.0787     0.1543     0.6099          494          614       190.96       212.63
+Robust Clustered: cersum triangular p2                 0.0690     0.1509     0.6473          571          645       226.97       226.97
+Robust Clustered: mserd uniform p2                     0.0583     0.1512     0.6998          517          586       199.89       199.89
+Robust Clustered: msetwo uniform p2                    0.0252     0.1497     0.8661          466          641       177.03       223.74
+Robust Clustered: msesum uniform p2                    0.0784     0.1565     0.6164          492          560       189.76       189.76
+Robust Clustered: cerrd uniform p2                     0.1498     0.1654     0.3653          435          487       161.90       161.90
+Robust Clustered: certwo uniform p2                    0.0682     0.1575     0.6648          401          537       143.39       181.21
+Robust Clustered: cersum uniform p2                    0.1691     0.1709     0.3223          421          466       153.69       153.69
+Robust Clustered: mserd epanechnikov p2                0.1017     0.1544     0.5102          530          604       207.63       207.63
+Robust Clustered: msetwo epanechnikov p2               0.0403     0.1476     0.7850          555          722       216.86       262.79
+Robust Clustered: msesum epanechnikov p2               0.0378     0.1478     0.7984          626          712       256.47       256.47
+Robust Clustered: cerrd epanechnikov p2                0.1170     0.1599     0.4643          445          505       168.17       168.17
+Robust Clustered: certwo epanechnikov p2               0.0634     0.1534     0.6794          465          614       175.64       212.84
+Robust Clustered: cersum epanechnikov p2               0.0844     0.1544     0.5847          530          604       207.73       207.73
+========================================================================================================================
 

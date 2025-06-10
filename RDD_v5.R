@@ -184,9 +184,9 @@ perform_rdd_overlapping <- function(data, point_id, total_points, include_geolog
   })
 }
 
-# Modified function for robustness checks
+# Modified function for robustness checks (now includes clustering option and polynomial order)
 perform_rdd_robustness <- function(data, include_geology = FALSE, exclude_border = FALSE, include_enslaved = FALSE,
-                                   include_pc_black = FALSE, bw_method = "mserd", kernel = "triangular", year) {
+                                   include_pc_black = FALSE, bw_method = "mserd", kernel = "triangular", year, cluster_var = NULL, p_order = 1) {
   result_df <- data.frame(coef = NA, se = NA, p_value = NA,
                           n_treat = NA, n_control = NA,
                           bw_left = NA, bw_right = NA)
@@ -218,8 +218,14 @@ perform_rdd_robustness <- function(data, include_geology = FALSE, exclude_border
       covs <- if (is.null(covs)) data$pc_black else cbind(covs, pc_black = data$pc_black)
     }
     
-    rdd_result <- rdrobust(y = data$log_farmv, x = data$scaled_dist, c = 0, covs = covs, 
-                           bwselect = bw_method, kernel = kernel)
+    # Add clustering if specified
+    if (!is.null(cluster_var)) {
+      rdd_result <- rdrobust(y = data$log_farmv, x = data$scaled_dist, c = 0, covs = covs, 
+                             bwselect = bw_method, kernel = kernel, cluster = cluster_var, p = p_order)
+    } else {
+      rdd_result <- rdrobust(y = data$log_farmv, x = data$scaled_dist, c = 0, covs = covs, 
+                             bwselect = bw_method, kernel = kernel, p = p_order)
+    }
     
     result_df$coef <- rdd_result$coef[2, 1]
     result_df$se <- rdd_result$se[2, 1]
@@ -243,8 +249,8 @@ perform_rdd_robustness <- function(data, include_geology = FALSE, exclude_border
   })
 }
 
-# Modified function to create formatted text tables (now includes robustness results)
-create_text_table <- function(border_results, overall_result, robustness_results, spec_name, year) {
+# Modified function to create formatted text tables (now includes both linear and quadratic results)
+create_text_table <- function(border_results, overall_result, robustness_results, clustered_robustness_results, spec_name, year) {
   # Combine border point results with overall result
   combined_results <- rbind(
     border_results %>% 
@@ -263,11 +269,11 @@ create_text_table <- function(border_results, overall_result, robustness_results
     )
   )
   
-  # Add robustness results
+  # Add regular robustness results (both linear and quadratic)
   if (!is.null(robustness_results) && nrow(robustness_results) > 0) {
     robustness_formatted <- robustness_results %>%
       mutate(
-        segment = paste("Robust:", bw_method, kernel)
+        segment = paste("Robust:", bw_method, kernel, paste0("p", p_order))
       ) %>%
       select(coef, se, p_value, n_control, n_treat, bw_left, bw_right, segment) %>%
       mutate(point_id = NA)
@@ -275,25 +281,38 @@ create_text_table <- function(border_results, overall_result, robustness_results
     combined_results <- rbind(combined_results, robustness_formatted)
   }
   
+  # Add clustered robustness results (both linear and quadratic)
+  if (!is.null(clustered_robustness_results) && nrow(clustered_robustness_results) > 0) {
+    clustered_formatted <- clustered_robustness_results %>%
+      mutate(
+        segment = paste("Robust Clustered:", bw_method, kernel, paste0("p", p_order))
+      ) %>%
+      select(coef, se, p_value, n_control, n_treat, bw_left, bw_right, segment) %>%
+      mutate(point_id = NA)
+    
+    combined_results <- rbind(combined_results, clustered_formatted)
+  }
+  
   # Create the formatted table text
   table_text <- paste0(
-    "\n", paste(rep("=", 90), collapse = ""), "\n",
+    "\n", paste(rep("=", 100), collapse = ""), "\n",
     "RDD Results: ", spec_name, " (Year: ", year, ")\n",
-    "Kernel: Triangular, Bandwidth Selector: MSERD\n",
-    paste(rep("=", 90), collapse = ""), "\n\n"
+    "Includes both linear (p1) and quadratic (p2) polynomial results\n",
+    "Clustered results use clustering by nearest border point\n",
+    paste(rep("=", 100), collapse = ""), "\n\n"
   )
   
   # Create header
-  header <- sprintf("%-25s %10s %10s %10s %12s %12s %12s %12s",
+  header <- sprintf("%-50s %10s %10s %10s %12s %12s %12s %12s",
                     "Segment", "Coeff", "Std Err", "P-value", 
                     "Obs Free", "Obs Slave", "BW Free", "BW Slave")
   
   table_text <- paste0(table_text, header, "\n")
-  table_text <- paste0(table_text, paste(rep("-", 90), collapse = ""), "\n")
+  table_text <- paste0(table_text, paste(rep("-", 120), collapse = ""), "\n")
   
   # Add data rows
   for (i in 1:nrow(combined_results)) {
-    row_text <- sprintf("%-25s %10.4f %10.4f %10.4f %12.0f %12.0f %12.2f %12.2f",
+    row_text <- sprintf("%-50s %10.4f %10.4f %10.4f %12.0f %12.0f %12.2f %12.2f",
                         combined_results$segment[i],
                         ifelse(is.na(combined_results$coef[i]), 0, combined_results$coef[i]),
                         ifelse(is.na(combined_results$se[i]), 0, combined_results$se[i]),
@@ -305,12 +324,11 @@ create_text_table <- function(border_results, overall_result, robustness_results
     table_text <- paste0(table_text, row_text, "\n")
   }
   
-  table_text <- paste0(table_text, paste(rep("=", 90), collapse = ""), "\n")
+  table_text <- paste0(table_text, paste(rep("=", 120), collapse = ""), "\n")
   
   return(table_text)
 }
 
-# Check if border files exist, if not search for them
 find_border_file <- function(default_path, search_pattern) {
   if (file.exists(default_path)) {
     return(default_path)
@@ -404,8 +422,9 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
     "RDD ANALYSIS RESULTS\n",
     "Year: ", year, "\n",
     "Analysis Date: ", Sys.Date(), "\n",
-    "Kernel: Triangular, Bandwidth Selector: MSERD\n",
-    paste(rep("=", 90), collapse = ""), "\n"
+    "Includes both linear (p1) and quadratic (p2) polynomial results\n",
+    "Clustered results use clustering by nearest border point\n",
+    paste(rep("=", 100), collapse = ""), "\n"
   )
   
   # Run robustness checks first to include in tables
@@ -413,16 +432,20 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
   
   bw_methods <- c("mserd", "msetwo", "msesum", "cerrd", "certwo", "cersum")
   kernels <- c("triangular", "uniform", "epanechnikov")
+  polynomial_orders <- c(1, 2)  # Both linear and quadratic
   
   # Create robustness results for each specification
   all_robustness_results <- list()
+  all_clustered_robustness_results <- list()
   
   for (spec_idx in 1:length(specifications)) {
     spec <- specifications[[spec_idx]]
     
+    # Regular robustness checks
     robustness_results <- expand.grid(
       bw_method = bw_methods,
-      kernel = kernels
+      kernel = kernels,
+      p_order = polynomial_orders
     ) %>%
       mutate(
         year = year,
@@ -433,7 +456,7 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
       )
     
     pb <- progress_bar$new(
-      format = paste("Robustness checks for spec", spec_idx, "[:bar] :percent eta: :eta"),
+      format = paste("Regular robustness checks for spec", spec_idx, "[:bar] :percent eta: :eta"),
       total = nrow(robustness_results), clear = FALSE, width = 60
     )
     
@@ -446,7 +469,9 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
         include_pc_black = spec$include_pc_black,
         bw_method = robustness_results$bw_method[i],
         kernel = robustness_results$kernel[i],
-        year = year
+        year = year,
+        cluster_var = NULL,  # No clustering for regular robustness
+        p_order = robustness_results$p_order[i]
       )
       
       # Update robustness_results with all columns from result
@@ -456,6 +481,47 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
     }
     
     all_robustness_results[[spec_idx]] <- robustness_results
+    
+    # Clustered robustness checks (by nearest border point)
+    clustered_robustness_results <- expand.grid(
+      bw_method = bw_methods,
+      kernel = kernels,
+      p_order = polynomial_orders
+    ) %>%
+      mutate(
+        year = year,
+        spec = spec_idx,
+        coef = NA, se = NA, p_value = NA,
+        n_treat = NA, n_control = NA,
+        bw_left = NA, bw_right = NA
+      )
+    
+    pb_clustered <- progress_bar$new(
+      format = paste("Clustered robustness checks for spec", spec_idx, "[:bar] :percent eta: :eta"),
+      total = nrow(clustered_robustness_results), clear = FALSE, width = 60
+    )
+    
+    for (i in 1:nrow(clustered_robustness_results)) {
+      result <- perform_rdd_robustness(
+        data_year_sf,
+        include_geology = spec$include_geology,
+        exclude_border = spec$exclude_border,
+        include_enslaved = spec$include_enslaved,
+        include_pc_black = spec$include_pc_black,
+        bw_method = clustered_robustness_results$bw_method[i],
+        kernel = clustered_robustness_results$kernel[i],
+        year = year,
+        cluster_var = data_year_sf$closest_point,  # Cluster by nearest border point
+        p_order = clustered_robustness_results$p_order[i]
+      )
+      
+      # Update clustered_robustness_results with all columns from result
+      clustered_robustness_results[i, names(result)] <- result
+      
+      pb_clustered$tick()
+    }
+    
+    all_clustered_robustness_results[[spec_idx]] <- clustered_robustness_results
   }
   
   # Overlapping border segment analysis (20 points)
@@ -488,12 +554,15 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
       include_pc_black = spec$include_pc_black,
       bw_method = "mserd",
       kernel = "triangular",
-      year = year
+      year = year,
+      cluster_var = NULL,
+      p_order = 1
     )
     
-    # Create text table with robustness results
+    # Create text table with both regular and clustered robustness results (both polynomial orders)
     table_text <- create_text_table(results, overall_result, 
                                     all_robustness_results[[spec_idx]], 
+                                    all_clustered_robustness_results[[spec_idx]],
                                     spec$name, year)
     all_tables_text <- paste0(all_tables_text, table_text)
     
@@ -531,7 +600,22 @@ run_analysis <- function(year, ipums_dir = "Data/IPUMS") {
   combined_robustness <- do.call(rbind, standardized_results)
   write_csv(combined_robustness, paste0("RDD/CSV/", year, "_robustness.csv"))
   
-  cat("Robustness checks for year", year, "completed and saved\n")
+  # Save clustered robustness results
+  all_clustered_cols <- unique(unlist(lapply(all_clustered_robustness_results, names)))
+  
+  standardized_clustered_results <- lapply(all_clustered_robustness_results, function(df) {
+    missing_cols <- setdiff(all_clustered_cols, names(df))
+    for (col in missing_cols) {
+      df[[col]] <- NA
+    }
+    return(df[, all_clustered_cols])  # Reorder columns consistently
+  })
+  
+  combined_clustered_robustness <- do.call(rbind, standardized_clustered_results)
+  write_csv(combined_clustered_robustness, paste0("RDD/CSV/", year, "_robustness_clustered.csv"))
+  
+  cat("Regular and clustered robustness checks for year", year, "completed and saved\n")
+  cat("Both linear and quadratic polynomial results included in text files and CSVs\n")
 }
 
 # Main execution block
