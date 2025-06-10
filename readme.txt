@@ -25,7 +25,10 @@ The script that makes Figure 1, using /Event_study/Event_study_panel_data.csv.
 The working paper.
 /RDD
 The results of the RDD scripts. The /CSV folder contains the results of each spatial RDD, as well as robustness checks for each year. The robustness checks consist of a border-wide RDD using the various different settings from the rdrobust package and with all the different specifications described in the working paper. The /Geopackage folder contains the results of each spatial RDD as files that can be used in GIS software.
-RDD_database_v3.R
+RDD_database_v4.R
 The script that creates the database /RDD/RDD_database.csv.
-RDD_v4.R
+RDD_v5.R
 The scripts that runs the spatial RDD.
+
+Appendix.R
+The script that runs the analysis described in the Appendix.
