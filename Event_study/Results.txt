@@ -1,5 +1,7 @@
 
---- 1. Event Study Model Results (slavery only) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 1 : slavery 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,990
 Weights: weight
@@ -17,9 +19,11 @@ RMSE: 136.0     Adj. R2: 0.891146
               Within R2: 0.12158 
 
 Adjusted R-squared: 0.8911464
-Number of observations: 12990 
+Observations: 12990 
 
---- 2. Event Study Model Results (pc_enslaved only) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 2 : pc_enslaved 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,745
 Weights: weight
@@ -37,9 +41,11 @@ RMSE: 132.3     Adj. R2: 0.892131
               Within R2: 0.174359
 
 Adjusted R-squared: 0.8921312
-Number of observations: 12745 
+Observations: 12745 
 
---- 3. Event Study Model Results (both slavery and pc_enslaved) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 3 : both 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,745
 Weights: weight
@@ -62,9 +68,11 @@ RMSE: 127.9     Adj. R2: 0.899127
               Within R2: 0.228272
 
 Adjusted R-squared: 0.899127
-Number of observations: 12745 
+Observations: 12745 
 
---- 4. Event Study Model Results (slavery, pc_enslaved, and cotton_pc) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 4 : cotton 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,744
 Weights: weight
@@ -92,9 +100,11 @@ RMSE: 125.5     Adj. R2: 0.902836
               Within R2: 0.257038
 
 Adjusted R-squared: 0.9028359
-Number of observations: 12744 
+Observations: 12744 
 
---- 5. Event Study Model Results (slavery, pc_enslaved, and ccratio) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 5 : ccratio 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,708
 Weights: weight
@@ -122,9 +132,11 @@ RMSE: 126.7     Adj. R2: 0.90019
               Within R2: 0.244605
 
 Adjusted R-squared: 0.9001897
-Number of observations: 12708 
+Observations: 12708 
 
---- 6. Event Study Model Results (slavery, pc_enslaved, and fixed cotton_pc) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 6 : cotton_fixed 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,745
 Weights: weight
@@ -152,9 +164,11 @@ RMSE: 127.7     Adj. R2: 0.899365
               Within R2: 0.230458
 
 Adjusted R-squared: 0.899365
-Number of observations: 12745 
+Observations: 12745 
 
---- 7. Event Study Model Results (slavery, pc_enslaved, and fixed ccratio) for Full South ---
+ = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+Model 7 : ccratio_fixed 
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
 OLS estimation, Dep. Var.: farmv
 Observations: 12,693
 Weights: weight
@@ -182,4 +196,4 @@ RMSE: 128.0     Adj. R2: 0.897796
               Within R2: 0.229022
 
 Adjusted R-squared: 0.8977955
-Number of observations: 12693 
+Observations: 12693 

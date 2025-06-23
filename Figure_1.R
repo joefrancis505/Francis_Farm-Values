@@ -13,7 +13,7 @@ data <- read.csv("Event_study/Event_study_panel_data.csv")
 # Define slavery states for each group
 slavery_states <- list(
   upper_south = c("Arkansas", "Delaware", "Kentucky", 
-                  "Maryland", "Missouri", "North Carolina", 
+                  "Maryland", "North Carolina", 
                   "Tennessee", "Virginia", "West Virginia", "District of Columbia"),
   deep_south = c("Alabama", "Florida", "Georgia", "Louisiana", 
                  "Mississippi", "South Carolina", "Texas")
@@ -64,55 +64,49 @@ create_combined_plot <- function(combined_data) {
   plot_width <- 9.2  # inches
   plot_height <- 5.5  # inches
   
-  plot_function <- function() {
-    setup_plot(plot_width, plot_height)
-    
-    year_range <- range(combined_data$year)
-    year_padding <- 2
-    
-    plot(range(combined_data$year), range(combined_data$mean_percent), 
-         type = "n",
-         xlab = " ",
-         ylab = "% of national average",
-         xlim = c(year_range[1] - year_padding, year_range[2] + year_padding),
-         ylim = c(0, 100),
-         xaxs = "i",
-         yaxs = "i",
-         axes = FALSE)
-    
-    x_ticks <- seq(year_range[1], year_range[2], by = 10)
-    
-    axis(1, at = x_ticks, 
-         labels = format_labels(x_ticks), 
-         lwd = 0, lwd.ticks = 0.8, padj = -0.1)
-    axis(2, at = seq(0, 100, by = 20), 
-         labels = format_labels(seq(0, 100, by = 20)), 
-         lwd = 0, lwd.ticks = 0.8, padj = 0.4)
-    
-    # Plot Upper South
-    upper_south <- combined_data %>% filter(region == "Upper South")
-    lines(upper_south$year, upper_south$mean_percent, col = "black", lwd = 2)
-    
-    # Plot Deep South
-    deep_south <- combined_data %>% filter(region == "Deep South")
-    lines(deep_south$year, deep_south$mean_percent, col = "black", lwd = 1)
-    
-    box(lwd = 0.8)
-    
-    # Add labels
-    upper_y <- max(upper_south$mean_percent[upper_south$year == 1860]) + 8
-    deep_y <- min(deep_south$mean_percent[deep_south$year == 1870]) - 8
-    
-    text(1860, upper_y, "Upper South", adj = c(0.5, 0.5), cex = 1.2)
-    text(1870, deep_y, "Deep South", adj = c(0.5, 0.5), cex = 1.2)
-  }
-  
-  # Display plot in console
-  plot_function()
-  
-  # Save plot as PDF
+  # Save plot as PDF directly (no console display)
   pdf("Figure_1.pdf", width = plot_width, height = plot_height)
-  plot_function()
+  setup_plot(plot_width, plot_height)
+  
+  year_range <- range(combined_data$year)
+  year_padding <- 2
+  
+  plot(range(combined_data$year), range(combined_data$mean_percent), 
+       type = "n",
+       xlab = " ",
+       ylab = "% of national average",
+       xlim = c(year_range[1] - year_padding, year_range[2] + year_padding),
+       ylim = c(0, 100),
+       xaxs = "i",
+       yaxs = "i",
+       axes = FALSE)
+  
+  x_ticks <- seq(year_range[1], year_range[2], by = 10)
+  
+  axis(1, at = x_ticks, 
+       labels = format_labels(x_ticks), 
+       lwd = 0, lwd.ticks = 0.8, padj = -0.1)
+  axis(2, at = seq(0, 100, by = 20), 
+       labels = format_labels(seq(0, 100, by = 20)), 
+       lwd = 0, lwd.ticks = 0.8, padj = 0.4)
+  
+  # Plot Upper South
+  upper_south <- combined_data %>% filter(region == "Upper South")
+  lines(upper_south$year, upper_south$mean_percent, col = "black", lwd = 2)
+  
+  # Plot Deep South
+  deep_south <- combined_data %>% filter(region == "Deep South")
+  lines(deep_south$year, deep_south$mean_percent, col = "black", lwd = 1)
+  
+  box(lwd = 0.8)
+  
+  # Add labels
+  upper_y <- max(upper_south$mean_percent[upper_south$year == 1860]) + 8
+  deep_y <- min(deep_south$mean_percent[deep_south$year == 1870]) - 8
+  
+  text(1860, upper_y, "Upper South", adj = c(0.5, 0.5), cex = 1.2)
+  text(1870, deep_y, "Deep South", adj = c(0.5, 0.5), cex = 1.2)
+  
   dev.off()
 }
 
